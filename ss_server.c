@@ -6,29 +6,29 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/types.h>
-#include <sys/sockets.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
-#include <sys.wait,h>
+#include <sys/wait.h>
 #include <signal.h>
 
 #define PORT "3490" // port users will connect to
 
 #define BACKLOG 10 // limit pending connections
 
-voidsigchld_handler(int s){
+void sigchld_handler(int s){
         while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
 // got sockaddr, ipv4 or ipv6
 
-void *get_in_addr(structsockaddr *sa){
+void *get_in_addr(struct sockaddr *sa){
     if(sa->sa_family == AF_INET){
         return &(((struct sockaddr_in*)sa)->sin_addr);
     }
 
-    return &(((struct sockaddr_in*)sa)->sin6_addr);
+    return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
 int main(void){
@@ -110,7 +110,7 @@ int main(void){
 
                 if(!fork()){// this is the child process
                     close(sockfd);//child doesnt need the listener
-                    if(send(new_fd, "Hello, World!", 13, 0) == -!)
+                    if(send(new_fd, "Hello, World!", 13, 0) == -1)
                         perror("send");
                     close(new_fd);
                     exit(0);
