@@ -117,7 +117,11 @@ int main(void){
                 }
                 close(new_fd); // parent doesnt need this
 
+        }
 
+        return 0;
+
+}
 
 
     
