@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  simple_server.c
+ *
+ *    Description:  simple server for experimenting with C and networking
+ *
+ *        Version:  1.0
+ *        Created:  03/27/2013 20:44:37
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author: Adam Fowler 
+ *        Company: Columbia University 
+ *
+ * =====================================================================================
+ */
+
+
 /*A simple stream server from Beej's guide to network programming*/
 
 #include <stdio.h>
